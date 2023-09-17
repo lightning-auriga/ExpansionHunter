@@ -23,6 +23,7 @@
 #include "graphalign/GraphAlignment.hh"
 
 #include <memory>
+#include <limits>
 
 namespace graphtools
 {
