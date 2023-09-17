@@ -63,47 +63,47 @@ namespace codes
     // Core bases A, C, G, T and degenerate bases B, D, H, K, M, N, S, R, V, W, Y all receive distinct codes. All other
     // base symbols are coded as X, which is the code intended to mismatch everything.
     const std::array<BaseCode, maxBaseAscii + 1> kReferenceBaseEncodingTable
-        = { X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
+        = {{X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, A, B, C, D, X, X, G, H, X, X, K, X, M, N, X, X, X, R, S, T, X, V, W, X, Y, X, X, X, X, X, X,
             X, A, X, C, X, X, X, G, X, X, X, X, X, X, X, X, X, X, X, X, T, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
-            X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X };
+            X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X}};
 
     // Core bases A, C, G, T all recieve distinct codes. All other base symbols are coded as X.
     const std::array<BaseCode, maxBaseAscii + 1> kQueryBaseEncodingTable
-        = { X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
+        = {{X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, A, X, C, X, X, X, G, X, X, X, X, X, X, X, X, X, X, X, X, T, X, X, X, X, X, X, X, X, X, X, X,
             X, A, X, C, X, X, X, G, X, X, X, X, X, X, X, X, X, X, X, X, T, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
             X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X,
-            X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X };
+            X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X}};
 
     // We use the standard matching rules for degenerate bases. The X symbol corresponds to a mismatch
     const std::array<std::array<bool, codes::kMaxQueryBaseCode + 1>, codes::kMaxReferenceBaseCode + 1>
         kReferenceQueryCodeMatchLookupTable = {
             // clang-format off
           //   A      C      G      T      X
-          { { true,  false, false, false, false }, // A
-            { false, true,  false, false, false }, // C
-            { false, false, true,  false, false }, // G
-            { false, false, false, true,  false }, // T
-            { false, false, false, false, false }, // X
-            { false, true,  true,  true,  false }, // B
-            { true,  false, true,  true,  false }, // D
-            { true,  true,  false, true,  false }, // H
-            { false, false, true,  true,  false }, // K
-            { true,  true,  false, false, false }, // M
-            { true,  true,  true,  true,  false }, // N
-            { true,  false, true,  false, false }, // R
-            { false, true,  true,  false, false }, // S
-            { true,  true,  true,  false, false }, // V
-            { true,  false, false, true,  false }, // W
-            { false, true,  false, true,  false }  // Y
+          { {{ true,  false, false, false, false }}, // A
+            {{ false, true,  false, false, false }}, // C
+            {{ false, false, true,  false, false }}, // G
+            {{ false, false, false, true,  false }}, // T
+            {{ false, false, false, false, false }}, // X
+            {{ false, true,  true,  true,  false }}, // B
+            {{ true,  false, true,  true,  false }}, // D
+            {{ true,  true,  false, true,  false }}, // H
+            {{ false, false, true,  true,  false }}, // K
+            {{ true,  true,  false, false, false }}, // M
+            {{ true,  true,  true,  true,  false }}, // N
+            {{ true,  false, true,  false, false }}, // R
+            {{ false, true,  true,  false, false }}, // S
+            {{ true,  true,  true,  false, false }}, // V
+            {{ true,  false, false, true,  false }}, // W
+            {{ false, true,  false, true,  false }}  // Y
             }
             // clang-format on
         };
