@@ -24,9 +24,13 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
+
+#include <fmt/core.h>
+#include <fmt/format.h>
 
 #include "core/ReferenceContigInfo.hh"
 
@@ -79,3 +83,11 @@ std::string encode(const ReferenceContigInfo& contigInfo, const GenomicRegion& r
 GenomicRegion decode(const ReferenceContigInfo& contigInfo, const std::string& encoding);
 
 }
+
+template <> struct fmt::formatter<ehunter::GenomicRegion> : formatter<string_view> {
+    auto format(const ehunter::GenomicRegion &region, format_context &ctx) const {
+        std::ostringstream o;
+        o << region;
+        return formatter<string_view>::format(o.str(), ctx);
+    }
+};

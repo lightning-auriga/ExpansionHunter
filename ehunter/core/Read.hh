@@ -28,6 +28,8 @@
 #include <string>
 
 #include <boost/functional/hash.hpp>
+#include <fmt/core.h>
+#include <fmt/format.h>
 
 #include "alignment/AlignmentClassifier.hh"
 #include "graphalign/GraphAlignment.hh"
@@ -166,3 +168,11 @@ using ReadIdToRepeatAlignmentStats = std::unordered_map<std::string, RepeatAlign
 std::ostream& operator<<(std::ostream& out, const Read& read);
 
 }
+
+template <> struct fmt::formatter<ehunter::ReadId> : formatter<string_view> {
+    auto format(const ehunter::ReadId &readId, format_context &ctx) const {
+        std::ostringstream o;
+        o << readId;
+        return formatter<string_view>::format(o.str(), ctx);
+    }
+};
