@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 project(ExpansionHunter LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -12,11 +12,11 @@ endif ()
 
 message(STATUS "BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 
-set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_STATIC_LIBS OFF)
 find_package(Boost 1.73 REQUIRED COMPONENTS program_options filesystem system)
 
 
-add_compile_options(-Wall -Werror -Wextra)
+add_compile_options(-Wall -Wextra)
 
 enable_testing()
 
@@ -120,12 +120,12 @@ target_link_libraries(ExpansionHunterLib PUBLIC
         BZip2::BZip2
         Threads::Threads
         spdlog::spdlog
-        absl::flat_hash_set)
+        absl::flat_hash_set -ldl -ldeflate)
 
 add_executable(ExpansionHunter
         app/ExpansionHunter.cpp
         )
-target_link_libraries(ExpansionHunter ExpansionHunterLib)
+target_link_libraries(ExpansionHunter ExpansionHunterLib -ldl -ldeflate)
 
 add_executable(UnitTests
         tests/AlignMatrixTest.cpp
